@@ -1,0 +1,4 @@
+git commit -m "Add CAP Java OData service"
+git commit -m "Integrate Python OCR service"
+git commit -m "Add SAP UI5 frontend"
+git commit -m "Dockerize services"
