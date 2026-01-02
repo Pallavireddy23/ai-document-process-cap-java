@@ -1,0 +1,4 @@
+Copy repo URL from GitHub and run:
+git branch -M main
+git remote add origin https://github.com/your-username/ai-document-processing-cap-java.git
+git push -u origin main
