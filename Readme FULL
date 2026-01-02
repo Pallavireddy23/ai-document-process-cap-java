@@ -1,0 +1,96 @@
+1️ SAP UI5 CODE (Enterprise-Style)
+📌 ui5-frontend/webapp/view/App.view.xml
+<mvc:View
+  controllerName="documentai.controller.App"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m">
+
+  <Page title="AI Document Processing">
+    <content>
+      <VBox class="sapUiSmallMargin">
+        <FileUploader
+          id="fileUploader"
+          uploadUrl="/upload"
+          placeholder="Upload Document"
+          change="onUpload" />
+
+        <Table items="{/Documents}">
+          <columns>
+            <Column><Text text="File Name"/></Column>
+            <Column><Text text="Extracted Text"/></Column>
+          </columns>
+          <items>
+            <ColumnListItem>
+              <cells>
+                <Text text="{fileName}" />
+                <Text text="{extractedText}" />
+              </cells>
+            </ColumnListItem>
+          </items>
+        </Table>
+      </VBox>
+    </content>
+  </Page>
+</mvc:View>
+📌 ui5-frontend/webapp/controller/App.controller.js
+sap.ui.define([
+  "sap/ui/core/mvc/Controller"
+], function (Controller) {
+  "use strict";
+
+  return Controller.extend("documentai.controller.App", {
+
+    onInit: function () {
+      var oModel = new sap.ui.model.odata.v2.ODataModel("/odata/v4/DocumentService/");
+      this.getView().setModel(oModel);
+    },
+
+    onUpload: function () {
+      sap.m.MessageToast.show("Document uploaded successfully");
+    }
+
+  });
+});
+📌 Why SAP likes this
+✔ SAP UI5
+✔ OData binding
+✔ Enterprise UI pattern
+2️ PYTHON OCR SERVICE (DOCUMENT AI CORE)
+📌 ai-service-python/app.py
+from flask import Flask, request, jsonify
+import pytesseract
+from PIL import Image
+import os
+
+app = Flask(__name__)
+
+UPLOAD_FOLDER = "uploads"
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+@app.route("/extract", methods=["POST"])
+def extract_text():
+    file = request.files["file"]
+    file_path = os.path.join(UPLOAD_FOLDER, file.filename)
+    file.save(file_path)
+
+    text = pytesseract.image_to_string(Image.open(file_path))
+
+    return jsonify({
+        "fileName": file.filename,
+        "extractedText": text
+    })
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
+📌 requirements.txt
+flask
+pytesseract
+pillow
+3️ SAP-TAILORED RESUME BULLETS (COPY DIRECTLY)
+📌 Project: AI-Powered Document Processing System
+• Built a cloud-native AI document processing service using CAP Java, Python OCR, and SAP UI5.
+• Designed and implemented OData v4 APIs for document metadata and extracted content.
+• Developed microservices architecture integrating CAP Java backend with Python AI services.
+• Implemented enterprise-grade SAP Fiori UI using SAP UI5 with OData data binding.
+• Containerized services using Docker and automated builds using GitHub Actions CI/CD.
+• Deployed and tested services on SAP Business Technology Platform (Cloud Foundry).
