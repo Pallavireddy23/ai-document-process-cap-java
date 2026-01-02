@@ -1,0 +1,24 @@
+ai-document-processing-cap-java/
+│
+├── backend-cap-java/
+│   ├── srv/
+│   ├── db/
+│   ├── app/
+│   └── pom.xml
+│
+├── ai-service-python/
+│   ├── app.py
+│   ├── requirements.txt
+│
+├── ui5-frontend/
+│   ├── webapp/
+│   └── package.json
+│
+├── docker/
+│   └── Dockerfile
+│
+├── docs/
+│   └── architecture.png
+│
+├── .gitignore
+└── README.md
