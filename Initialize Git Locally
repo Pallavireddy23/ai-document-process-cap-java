@@ -1,0 +1,4 @@
+Open terminal in project folder:
+bash
+git init
+git status
